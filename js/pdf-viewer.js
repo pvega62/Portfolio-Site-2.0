@@ -190,11 +190,14 @@
     }, { root: null, rootMargin: '300px 0px', threshold: 0.01 }) : null;
 
     sampleCards.forEach(card => {
+      console.log('Processing card:', card);
       const pdf = card.getAttribute('data-pdf');
       const title = (card.querySelector('.card-title') || {}).textContent || '';
 
   // If the card has a thumbnail (img/svg/other .card-img-top) and a pdf, insert a preview wrapper
   const thumb = card.querySelector('.card-img-top');
+      console.log('Found thumb:', thumb);
+      console.log('Found pdf:', pdf);
       if (thumb && pdf) {
         try {
           const previewWrapper = document.createElement('div');
