@@ -1,2 +1,2 @@
-# Portfolio Site 2.0 in Process
+# Portfolio site 2.0 in process
 This is the repository folder for my portfolio site version 2.0, which is currently a work in progress. The site is built using HTML, CSS, and JavaScript, with a focus on showcasing my projects and skills in a clean and professional manner.

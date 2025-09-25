@@ -46,7 +46,7 @@
     function openPdf(src, title) {
       if (!iframe || !modalEl) return;
       modalLabel.textContent = title || 'Document Viewer';
-      iframe.src = src;
+      iframe.src = encodeURI(src);
       showSpinner(true);
       bsModal.show();
     }
@@ -113,7 +113,7 @@
         previewWrapper.appendChild(canvas);
 
         // fetch and render first page
-        const loadingTask = window.pdfjsLib.getDocument(pdfUrl);
+        const loadingTask = window.pdfjsLib.getDocument(encodeURI(pdfUrl));
         const pdf = await loadingTask.promise;
         const page = await pdf.getPage(1);
         const rect = previewWrapper.getBoundingClientRect();
