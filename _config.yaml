@@ -42,3 +42,4 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - js/
+  - index.html
