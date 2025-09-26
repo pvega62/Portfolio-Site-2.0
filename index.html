@@ -199,7 +199,6 @@
       function applyNavbarOffset() { // fix
         if (!navbar) return;
         const h = navbar.getBoundingClientRect().height || 0;
-        console.log('applyNavbarOffset height=', h);
         if (main) {
           main.style.paddingTop = h + 'px';
         } else {
@@ -240,29 +239,7 @@
   // small delay to avoid race on very fast loads
   setTimeout(() => observer.observe(lightSection), 30);
 
-        // Robust fallback: also check overlap on scroll/resize in case
-        // the IntersectionObserver timing or layout offsets prevent reliable toggling.
-        function checkOverlap() {
-          if (!navbar || !lightSection) return;
-          const navRect = navbar.getBoundingClientRect();
-          const secRect = lightSection.getBoundingClientRect();
-          // overlap if the top of the section is at or above the navbar bottom
-          const isOverlapping = secRect.top <= navRect.bottom && secRect.bottom > navRect.top;
-          if (isOverlapping && window.scrollY > 0) {
-            navbar.classList.add('over-tan');
-          } else {
-            navbar.classList.remove('over-tan');
-          }
-        }
 
-        // Debounce helper
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(checkOverlap, 25);
-        }, { passive: true });
-        // Ensure we run initially and on relevant layout changes
-        checkOverlap();
 
       // Recreate observer when the navbar height may change (resize, toggler open/close)
       let resizeTimeout;
