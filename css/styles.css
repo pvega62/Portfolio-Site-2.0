@@ -130,3 +130,12 @@ body {
   height: 180px;
   object-fit: cover;
 }
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+}
+
+.inno-link {
+  text-decoration: none;
+  color: inherit;
+}
