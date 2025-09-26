@@ -5,21 +5,6 @@ window.addEventListener('load', function () {
       if (navbar) navbar.classList.remove('over-tan');
       const lightSection = document.querySelector('.light-section');
 
-      // Because we made the navbar fixed for robustness, reserve layout space
-      // so page content isn't hidden behind it. We set padding-top on <main>.
-      const main = document.getElementById('main-content') || document.querySelector('main');
-      function applyNavbarOffset() { // fix
-        if (!navbar) return;
-        const h = navbar.getBoundingClientRect().height || 0;
-        if (main) {
-          main.style.paddingTop = h + 'px';
-        } else {
-          // Fallback to body padding if main not found
-          document.body.style.paddingTop = h + 'px';
-        }
-      }
-  applyNavbarOffset();
-
       // We'll observe the lightSection itself instead of using an extra sentinel element.
 
       // We want to know when the top edge of the light section enters the viewport
@@ -62,8 +47,6 @@ window.addEventListener('load', function () {
           observer.disconnect();
           observer = createObserver();
           observer.observe(lightSection);
-          // Also update reserved layout space for the fixed navbar
-          applyNavbarOffset();
         }, 120);
       });
 
@@ -74,13 +57,11 @@ window.addEventListener('load', function () {
           observer.disconnect();
           observer = createObserver();
           observer.observe(lightSection);
-          applyNavbarOffset();
         });
         collapseEl.addEventListener('hidden.bs.collapse', () => {
           observer.disconnect();
           observer = createObserver();
           observer.observe(lightSection);
-          applyNavbarOffset();
         });
       }
     });

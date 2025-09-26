@@ -125,6 +125,10 @@ body {
   outline-offset: 2px;
 }
 
+main#main-content {
+  padding-top: 70px;
+}
+
 .card-img-top {
   width: 100%;
   height: 180px;
