@@ -45,7 +45,7 @@
   </header>
 
   <main id="main-content" tabindex="-1">
-  <div class="hero-section" style="background-color: #1f3850;">
+  <div class="hero-section">
     <div class="container-fluid px-4">
       <div class="text-center py-5">
         <h1 class="display-4 fw-bold">Technical Writer. UX Writer. Journalist.</h1>
@@ -220,7 +220,7 @@
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             // Only switch to the tan state if the sentinel intersects AND the user has scrolled
-            if (entry.isIntersecting && window.scrollY > 0) {
+            if (entry.isIntersecting) {
               navbar.classList.add('over-tan');
             } else {
               navbar.classList.remove('over-tan');
