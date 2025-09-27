@@ -75,14 +75,7 @@ body {
 /* Transitions for smooth color/background changes */
 .sticky-top {
   transition: background-color 150ms ease;
-  /* Fallback: make navbar fixed so it remains at the top even if a parent
-     creates a new stacking/containing context that would break position:sticky */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1030; /* slightly above most content but below modals */
+
 }
 .sticky-top .nav-link {
   transition: color 150ms ease;
