@@ -25,14 +25,4 @@ body { background: var(--dark); font-family: Inter, system-ui, -apple-system, 'S
 .card-border { border: none; }
 /* adjust container background bands to be flush edge-to-edge */
 .bg-tan, .bg-custom-dark { margin-left: -1rem; margin-right: -1rem; padding-left: 1rem; padding-right: 1rem; }
-/* Make header/nav background span full viewport width */
-header, header > .container-fluid, header .navbar {
-  width: 100vw !important;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
 @media (max-width: 767px) { .hero-section { padding-top: 4rem; padding-bottom: 3rem; } }
