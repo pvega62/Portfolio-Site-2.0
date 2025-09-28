@@ -152,6 +152,7 @@
       }
 
       card.addEventListener('click', async () => {
+        console.log('Card clicked', { pdf, md, href });
         if (href) window.open(href, '_blank', 'noopener');
         else if (pdf) openPdf(pdf, title.trim());
         else if (md) {
