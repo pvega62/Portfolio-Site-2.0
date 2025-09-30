@@ -27,3 +27,50 @@ body { background: var(--dark); font-family: Inter, system-ui, -apple-system, 'S
 /* adjust container background bands to be flush edge-to-edge */
 .bg-tan, .bg-custom-dark { margin-left: -1rem; margin-right: -1rem; padding-left: 1rem; padding-right: 1rem; }
 @media (max-width: 767px) { .hero-section { padding-top: 4rem; padding-bottom: 3rem; } }
+
+.browser-frame {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.browser-header {
+  background-color: #f1f1f1;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.browser-dot {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.browser-dot.red {
+  background-color: #ff5f56;
+}
+
+.browser-dot.yellow {
+  background-color: #ffbd2e;
+}
+
+.browser-dot.green {
+  background-color: #27c93f;
+}
+
+.browser-body {
+  padding: 10px;
+  font-family: monospace;
+  font-size: 12px;
+  background-color: #fff;
+  color: #333;
+  text-align: left;
+}
+
+.text-color-dark {
+  color: var(--dark);
+}
