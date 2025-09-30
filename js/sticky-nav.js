@@ -1,28 +1,29 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-  const navbar = document.querySelector('.sticky-top');
+  const header = document.querySelector('.sticky-top');
+  const navbar = header.querySelector('.navbar');
   const lightSection = document.querySelector('.light-section');
 
-  if (!navbar || !lightSection) {
+  if (!header || !lightSection || !navbar) {
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navbar.classList.add('over-tan');
-        } else {
-          navbar.classList.remove('over-tan');
-        }
-      });
-    },
-    {
-      root: null,
-      rootMargin: '-70px 0px -70px 0px', // Adjust top and bottom margins to trigger the change when the section is close to the navbar
-      threshold: 0,
-    }
-  );
+  function checkSection() {
+    const lightSectionTop = lightSection.getBoundingClientRect().top;
+    const lightSectionBottom = lightSection.getBoundingClientRect().bottom;
+    const navbarHeight = navbar.offsetHeight;
 
-  observer.observe(lightSection);
+    if (lightSectionTop <= navbarHeight && lightSectionBottom >= navbarHeight) {
+      navbar.classList.remove('navbar-dark', 'bg-custom-dark');
+      navbar.classList.add('navbar-light', 'bg-light');
+    } else {
+      navbar.classList.remove('navbar-light', 'bg-light');
+      navbar.classList.add('navbar-dark', 'bg-custom-dark');
+    }
+  }
+
+  // Check on load
+  checkSection();
+
+  // Check on scroll
+  window.addEventListener('scroll', checkSection);
 });

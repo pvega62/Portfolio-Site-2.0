@@ -43,11 +43,15 @@
       spinner.style.display = show ? 'block' : 'none';
     }
 
-    function openPdf(src, title) {
+    function loadPdf(src, title) {
       if (!iframe || !modalEl) return;
       modalLabel.textContent = title || 'Document Viewer';
       iframe.src = encodeURI(src);
       showSpinner(true);
+    }
+
+    function openPdf(src, title) {
+      loadPdf(src, title);
       bsModal.show();
     }
 
@@ -56,6 +60,19 @@
       iframe.src = '';
       showSpinner(false);
     }
+
+    modalEl.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget;
+      if (!button) return;
+      const card = button.closest('.sample-card');
+      if (card) {
+        const pdf = card.getAttribute('data-pdf');
+        const title = (card.querySelector('.card-title') || {}).textContent || '';
+        if (pdf) {
+          loadPdf(pdf, title.trim());
+        }
+      }
+    });
 
     // Hide spinner when iframe finishes loading.
     iframe.addEventListener('load', () => {
@@ -192,6 +209,7 @@
     sampleCards.forEach(card => {
       console.log('Processing card:', card);
       const pdf = card.getAttribute('data-pdf');
+      const href = card.getAttribute('data-href');
       const title = (card.querySelector('.card-title') || {}).textContent || '';
 
   // If the card has a thumbnail (img/svg/other .card-img-top) and a pdf, insert a preview wrapper
@@ -243,7 +261,6 @@
       }
 
       // attach open handlers
-      const href = card.getAttribute('data-href');
       card.addEventListener('click', () => {
         if (href) {
           window.open(href, '_blank', 'noopener');
