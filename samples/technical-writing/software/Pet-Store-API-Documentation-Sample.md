@@ -7,34 +7,34 @@ The Petstore API allows a developer to:
  **Pets**
  - Create, read, update, and delete pets in the database.
  - Upload an image for a pet.
- - Find pets by their status (available, pending, sold), tags, or unique identifiers.
+ - Find pets by their status (available, pending, or sold), tags, or unique identifiers.
 
 **Store**
  - Get inventory of pets, categorized by status.
- - Place an order for a pet.
- - Find purchase orders by their ID.
+ - Order a pet.
+ - Find purchase orders by their identifier (ID).
  - Cancel an order.
 
 **User**
- - Create a new user account (individually or from a list).
+ - Create a new user account individually or from a list.
  - Log users in and out of the system.
  - Find a user by their ID.
  - Retrieve, update, and delete a user's information by their username. 
 
-For this example, we'll use a dog (Krypto) and the ID number 210.
-## Connection Prerequisites
+This example uses a dog, Krypto, and the ID number 210.
+## Connection prerequisites
 
- The base URL of all API requests is `https://petstore3.swagger.io/api/v3`.
+ The base address of all API requests is `https://petstore3.swagger.io/api/v3`.
 ## Authentication
- To authenticate your connection to the Petstore's API, use OAuth 2.0 or an assigned API key. To be assigned a key, email budbaker@bhavenpets.com.
+ To authenticate your connection to the Petstore's API, use OAuth 2.0 or an assigned API key. To get a key, email budbaker@bhavenpets.com.
 
-  **NOTE**: For security purposes, API keys must not be shared with other users. If you suspect that your API key is compromised, please contact us immediately to revoke the old key and issue a new one.
+  **Note**: for security purposes, don't share API keys with other users. If you suspect that another user has compromised your API key, contact support immediately to revoke the old key and get a new one.
 
 # Functions
 ## Pets
  This section covers everything about your pets.
 
-### Adding a New Pet
+### Adding a new pet
 Adds a new pet to the store's database.
 
 Endpoint: https://petstore3.swagger.io/api/v3/pet
@@ -48,7 +48,8 @@ POST "https://petstore3.swagger.io/api/v3/pet" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
  -H "api_key: <YOUR_API_KEY>" \
- -d '{
+ -d 
+  {
   "id": 0,
   "name": "string",
   "category": {
@@ -65,7 +66,7 @@ POST "https://petstore3.swagger.io/api/v3/pet" \
     }
   ],
   "status": "available"
-}'
+}
 ```
 
 **OAuth 2.0 cURL Example**
@@ -74,7 +75,8 @@ POST "https://petstore3.swagger.io/api/v3/pet" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
  -H "Authorization: Bearer <YOUR_OAUTH_TOKEN>" \
- -d '{
+ -d 
+  {
   "id": 0,
   "name": "string",
   "category": {
@@ -91,18 +93,18 @@ POST "https://petstore3.swagger.io/api/v3/pet" \
     }
   ],
   "status": "available"
-}'
+}
 ```
 #### Responses
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation|
-| 400  | Invalid input |
+| 400  | Not valid input |
 | 404  | Pet not found |
 | 422 | Validation exception |
 | default | Unexpected error |
 
-##### Response Example
+##### Response example
 
 `200: Successful operation`
 ```json
@@ -127,12 +129,12 @@ POST "https://petstore3.swagger.io/api/v3/pet" \
 ```
 
 #### Parameters
-##### Request Body
+##### Request body
 | Name | Type | Description |
 |------|------|-------------|
-| body | Pet object | **(Required)** The `Pet` object that needs to be added to the store. |
+| body | Pet object | Required The `Pet` object to add to the store. |
 
-### Updating an Existing Pet
+### Updating an existing pet
 Updates an existing pet by its ID.
 
 Endpoint: https://petstore3.swagger.io/api/v3/pet
@@ -145,11 +147,12 @@ PUT "https://petstore3.swagger.io/api/v3/pet" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "api_key: <YOUR_API_KEY>" \
--d '{
+-d 
+{
     "id": 210,
     "name": "Krypto",
     "status": "available"
-  }'
+  }
 ```
 
 **OAuth 2.0 cURL Example**
@@ -158,22 +161,23 @@ PUT "https://petstore3.swagger.io/api/v3/pet" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer <YOUR_OAUTH_TOKEN>" \
--d '{
+-d 
+{
     "id": 210,
     "name": "Krypto",
     "status": "available"
-  }'
+  }
 ```
 #### Responses
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation |
-| 400  | Invalid input |
+| 400  | Not valid input |
 | 404  | Pet not found |
 | 422 | Validation exception |
 | default | Unexpected error |
 
-##### Response Example
+##### Response example
 `200: Successful operation`
 ```json
 {
@@ -196,12 +200,12 @@ PUT "https://petstore3.swagger.io/api/v3/pet" \
 }
 ```
 #### Parameters
-##### Request Body
+##### Request body
 | Name | Type | Description |
 |------|------|-------------|
-| body | Pet object | **(Required)** Pet object that needs to be updated. |
+| body | Pet object | Required Pet object to update. |
 
-### Finding a Pet by Status
+### Finding a pet by status
 Finds pets by their status.
 
 Endpoint: https://petstore3.swagger.io/api/v3/pet/findByStatus
@@ -226,9 +230,9 @@ GET "https://petstore3.swagger.io/api/v3/pet/findByStatus?status=available" \
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation |
-| 400  | Invalid input |
+| 400  | Not valid input |
 | default | Unexpected error |
-#### Response Example
+#### Response example
 `200: Successful operation`
 ```json
 [
@@ -253,11 +257,11 @@ GET "https://petstore3.swagger.io/api/v3/pet/findByStatus?status=available" \
 ]
 ```
 #### Parameters
-##### Query Parameters
+##### Query parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
 | status | string | Status of the pet to find. <br> **Default:** `available`. <br> **Allowed values:** `available`, `pending`, `sold`. |
-### Finding Pets by Tags
+### Finding pets by tags
 
 Finds pets by their tags.
 
@@ -283,9 +287,9 @@ GET "https://petstore3.swagger.io/api/v3/pet/findByTags?tags=string" \
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation |
-| 400  | Invalid input |
+| 400  | Not valid input |
 | default | Unexpected error |
-##### Response Example
+##### Response example
 `200: Successful operation`
 ```json
 [
@@ -310,12 +314,12 @@ GET "https://petstore3.swagger.io/api/v3/pet/findByTags?tags=string" \
 ]
 ```
 #### Parameters
-##### Query Parameters
+##### Query parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
 | tags   | array  | Tags to filter by. <br> **Default:** `[]`. <br> **Allowed values:** Any valid tag names. |
 
-### Finding a Pet by ID
+### Finding a pet by ID
 Finds a pet by its unique ID.
 
 Endpoint: https://petstore3.swagger.io/api/v3/pet/{petId}
@@ -339,10 +343,10 @@ GET "https://petstore3.swagger.io/api/v3/pet/210" \
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation |
-| 400  | Invalid ID supplied |
+| 400  | Not valid ID supplied |
 | 404  | Pet not found |
 | default | Unexpected error |
-#### Response Example
+#### Response example
 `200: Successful operation`
 ```json
 {
@@ -365,12 +369,12 @@ GET "https://petstore3.swagger.io/api/v3/pet/210" \
 }
 ```
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
 | petId   | integer  | ID of pet to return |
 
-### Updating a Pet with Form Data
+### Updating a pet with form data
 Updates a pet in the store with form data.
 
 Endpoint: https://petstore3.swagger.io/api/v3/pet/{petId}
@@ -399,10 +403,10 @@ POST "https://petstore3.swagger.io/api/v3/pet/210" \
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation |
-| 405  | Invalid input |
+| 405  | Not valid input |
 | default | Unexpected error |
 
-##### Response Example
+##### Response example
 `200: Successful operation`
 ```json
 {
@@ -426,18 +430,18 @@ POST "https://petstore3.swagger.io/api/v3/pet/210" \
 ```
 
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                               | 
 |--------|--------|-------------------------------------------|
-| petId  | integer  | ID of pet that needs to be updated        |
+| petId  | integer  | ID of the pet to update        |
 
-##### Query Parameters
+##### Query parameters
 | Name   | Type   | Description                 |
 |--------|--------|-----------------------------|
-| name   | string | Name of pet that needs to be updated |
-| status | string | Status of pet that needs to be updated |
+| name   | string | Name of the pet to update |
+| status | string | Status of the pet to update |
 
-### Deleting a Pet
+### Deleting a pet
 Deletes a pet from the database.
 
 Endpoint: https://petstore3.swagger.io/api/v3/pet/{petId}
@@ -459,18 +463,18 @@ DELETE "https://petstore3.swagger.io/api/v3/pet/210" \
 | Code | Description |
 |------|-------------|
 | 200  | Pet deleted |
-| 400  | Invalid ID supplied |
+| 400  | Not valid ID supplied |
 | 404  | Pet not found |
 
-(A successful deletion returns a `200` code with no response body.)
+A successful deletion returns a `200` code with no response body.
 
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
 | petId   | integer  | ID of pet to delete |
 
-### Uploading an Image
+### Uploading an image
 Uploads an image for a pet.
 
 Endpoint: https://petstore3.swagger.io/api/v3/pet/{petId}/uploadImage
@@ -499,7 +503,7 @@ POST "https://petstore3.swagger.io/api/v3/pet/210/uploadImage" \
 |------|-------------|
 | 200  | Successful operation |
 | default | Unexpected error |
-##### Response Examples
+##### Response examples
 `200: Successful operation`
 ```json
 {
@@ -509,20 +513,20 @@ POST "https://petstore3.swagger.io/api/v3/pet/210/uploadImage" \
 }
 ```
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
 | petId   | integer  | ID of pet to update |
-##### Form Data Parameters
+##### Form data parameters
 | Name   | Type   | Description|
 |--------|--------|------------|
-| additionalMetadata | string | Additional data to pass to server. |
+| additionalMetadata | string | Extra data to pass to server. |
 | file | file | File to upload. |
 
 ## Store
 This section allows you to access Petstore orders.
 
-### Getting Pet Inventories
+### Getting pet inventories
 Returns pet inventories by status.
 
 Endpoint: https://petstore3.swagger.io/api/v3/store/inventory
@@ -547,7 +551,7 @@ GET "https://petstore3.swagger.io/api/v3/store/inventory" \
 |------|-------------|
 | 200  | Successful operation |
 | default | Unexpected error |
-##### Response Example
+##### Response example
 `200: Successful operation`
 ```json
 {
@@ -559,7 +563,7 @@ GET "https://petstore3.swagger.io/api/v3/store/inventory" \
 #### Parameters
 None
 
-### Placing an Order
+### Placing an order
 Places an order for a pet.
 
 Endpoint: https://petstore3.swagger.io/api/v3/store/order
@@ -573,14 +577,15 @@ POST "https://petstore3.swagger.io/api/v3/store/order" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "api_key: <YOUR_API_KEY>" \
--d '{
+-d 
+{
   "id": 0,
   "petId": 0,
   "quantity": 0,
   "shipDate": "2025-08-11T15:13:06.939Z",
   "status": "placed",
   "complete": false
-}'
+}
 ```
 **OAuth 2.0 cURL Example**
 ```bash
@@ -588,22 +593,23 @@ POST "https://petstore3.swagger.io/api/v3/store/order" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer <YOUR_OAUTH_TOKEN>" \
--d '{
+-d 
+{
   "id": 0,
   "petId": 0,
   "quantity": 0,
   "shipDate": "2025-08-11T15:13:06.939Z",
   "status": "placed",
   "complete": false
-}'
+}
 ```
 #### Responses
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation |
-| 400  | Invalid Order |
+| 400  | Not valid Order |
 | default | Unexpected error |
-##### Response Example
+##### Response example
 
 `200: Successful operation`
 ```json
@@ -617,12 +623,12 @@ POST "https://petstore3.swagger.io/api/v3/store/order" \
 }
 ```
 #### Parameters
-##### Request Body
+##### Request body
 | Name | Type | Description |
 |------|------|-------------|
-| body | Order object | **(Required)** The `Order` object for the pet. |
+| body | Order object | Required The `Order` object for the pet. |
 
-### Finding a Purchase Order
+### Finding a purchase order
 Finds a purchase order by its ID.
 
 Endpoint: https://petstore3.swagger.io/api/v3/store/order/{orderId}
@@ -647,10 +653,10 @@ GET "https://petstore3.swagger.io/api/v3/store/order/1" \
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation |
-| 400  | Invalid ID supplied |
+| 400  | Not valid ID supplied |
 | 404  | Order not found |
 | default | Unexpected error |
-##### Response Example
+##### Response example
 
 `200: Successful operation`
 ```json
@@ -664,13 +670,13 @@ GET "https://petstore3.swagger.io/api/v3/store/order/1" \
 }
 ```
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
-| orderId   | integer  | ID of the purchase order to be fetched |
+| orderId   | integer  | ID of the purchase order to fetch |
 
 
-### Deleting a Purchase Order
+### Deleting a purchase order
 Deletes a purchase order by its ID.
 
 Endpoint: https://petstore3.swagger.io/api/v3/store/order/{orderId}
@@ -695,22 +701,22 @@ DELETE "https://petstore3.swagger.io/api/v3/store/order/1" \
 | Code | Description |
 |------|-------------|
 | 200  | order deleted |
-| 400  | Invalid ID supplied |
+| 400  | Not valid ID supplied |
 | 404  | Order not found |
 | default | Unexpected error |
 
-(A successful deletion returns a `200` code with no response body.)
+A successful deletion returns a `200` code with no response body.
 
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
-| orderId   | integer  | ID of the order that needs to be deleted |
+| orderId   | integer  | ID of the order to delete |
 
 ## User
 This section describes operations related to users.
 
-### Creating a User
+### Creating a user
 Creates a new user account.
 
 Endpoint: https://petstore3.swagger.io/api/v3/user
@@ -724,7 +730,8 @@ POST "https://petstore3.swagger.io/api/v3/user" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "api_key: <YOUR_API_KEY>" \
--d '{
+-d 
+{
   "id": 0,
   "username": "string",
   "firstName": "string",
@@ -733,7 +740,7 @@ POST "https://petstore3.swagger.io/api/v3/user" \
   "password": "string",
   "phone": "string",
   "userStatus": 0
-}'
+}
 ```
 **OAuth 2.0 cURL Example**
 ```bash
@@ -741,7 +748,8 @@ POST "https://petstore3.swagger.io/api/v3/user" \
 -H "accept: application/json" \
 -H "Authorization: Bearer <YOUR_OAUTH_TOKEN>" \
 -H "Content-Type: application/json" \
--d '{
+-d 
+{
   "id": 0,
   "username": "string",
   "firstName": "string",
@@ -750,13 +758,13 @@ POST "https://petstore3.swagger.io/api/v3/user" \
   "password": "string",
   "phone": "string",
   "userStatus": 0
-}'
+}
 ```
 #### Responses
 | Code | Description |
 |------|-------------|
 | default | successful operation |
-##### Response Example
+##### Response example
 `200: successful operation`
 ```json
 {
@@ -772,12 +780,12 @@ POST "https://petstore3.swagger.io/api/v3/user" \
 ```
 
 #### Parameters
-##### Request Body
+##### Request body
 | Name | Type | Description |
 |------|------|-------------|
-| body | User object | **(Required)** The `User` object to be created. |
+| body | User object | Required The `User` object to create. |
 
-### Creating a List of Users with List
+### Creating a list of users with list
 Creates list of users with given input list.
 
 Endpoint: https://petstore3.swagger.io/api/v3/user/createWithList
@@ -791,7 +799,7 @@ POST "https://petstore3.swagger.io/api/v3/user/createWithList" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "api_key: <YOUR_API_KEY>" \
--d \
+-d 
   [
     {
       "id": 0,
@@ -811,7 +819,7 @@ POST "https://petstore3.swagger.io/api/v3/user/createWithList" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer <YOUR_OAUTH_TOKEN>" \
--d \
+-d 
   [
     {
       "id": 0,
@@ -829,7 +837,7 @@ POST "https://petstore3.swagger.io/api/v3/user/createWithList" \
 | Code | Description |
 |------|-------------|
 | default | successful operation |
-##### Response Example
+##### Response example
 `200: Successful operation`
 ```json
 {
@@ -839,18 +847,17 @@ POST "https://petstore3.swagger.io/api/v3/user/createWithList" \
   "lastName": "string",
   "email": "string",
   "password": "string",
-  "phone": "string",
-  "userStatus": 0
+  "phone": "string",n  "userStatus": 0
 }
 ```
 
 #### Parameters
-##### Request Body
+##### Request body
 | Name | Type | Description |
 |------|------|-------------|
-| body | Array of User objects | **(Required)** The list of `User` objects to be created. |
+| body | Array of User objects | Required The list of `User` objects to create. |
 
-### Logging In
+### Logging in
 Logs user into the system.
 
 Endpoint: https://petstore3.swagger.io/api/v3/user/login
@@ -874,9 +881,9 @@ GET "https://petstore3.swagger.io/api/v3/user/login?username=string&password=str
 | Code | Description |
 |------|-------------|
 | 200  | successful operation |
-| 400  | Invalid username/password supplied |
+| 400  | Not valid username/password supplied |
 | default | Unexpected error |
-#### Response Example
+#### Response example
 `200: successful operation`
 ```json
 {
@@ -887,16 +894,16 @@ GET "https://petstore3.swagger.io/api/v3/user/login?username=string&password=str
 | Name| Description |Type|
 |------|-------------|----|
 | `X-Rate-Limit`| Calls per hour allowed by the user. | integer |
-| `X-Expires-After`| Date in UTC when token expires. | string |
+| `X-Expires-After`| Date in Coordinated Universal Time (UTC) when token expires. | string |
 
 #### Parameters
-##### Query Parameters
+##### Query parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
 | username   | string  | The username for login. |
 | password   | string  | The password for login in clear text. |
 
-### Logging Out
+### Logging out
 Logs out current logged in user session.
 
 Endpoint: https://petstore3.swagger.io/api/v3/user/logout
@@ -921,7 +928,7 @@ GET "https://petstore3.swagger.io/api/v3/user/logout" \
 |------|-------------|
 | 200  | successful operation |
 | default | successful operation |
-##### Response Example
+##### Response example
 `200: successful operation`
 ```json
 {
@@ -931,7 +938,7 @@ GET "https://petstore3.swagger.io/api/v3/user/logout" \
 #### Parameters
 None
 
-### Getting User by Username
+### Getting user by username
 Gets a user by their username.
 
 Endpoint: https://petstore3.swagger.io/api/v3/user/{username}
@@ -955,7 +962,7 @@ GET "https://petstore3.swagger.io/api/v3/user/user1" \
 | Code | Description |
 |------|-------------|
 | 200  | successful operation |
-| 400  | Invalid username supplied |
+| 400  | Not valid username supplied |
 | 404  | User not found |
 | default | Unexpected error |
 
@@ -973,12 +980,12 @@ GET "https://petstore3.swagger.io/api/v3/user/user1" \
 }
 ```
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
-| username   | string  | The username of the user to be fetched. Use "user1" for testing. |
+| username   | string  | The username of the user to fetch. Use "user1" for testing. |
 
-### Updating a User
+### Updating a user
 Updates a user.
 
 Endpoint: https://petstore3.swagger.io/api/v3/user/{username}
@@ -992,7 +999,8 @@ PUT "https://petstore3.swagger.io/api/v3/user/user1" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "api_key: <YOUR_API_KEY>" \
--d '{
+-d 
+{
   "id": 0,
   "username": "user1",
   "firstName": "string",
@@ -1001,7 +1009,7 @@ PUT "https://petstore3.swagger.io/api/v3/user/user1" \
   "password": "string",
   "phone": "string",
   "userStatus": 0
-}'
+}
 ```
 **OAuth 2.0 cURL Example**
 ```bash
@@ -1009,7 +1017,8 @@ PUT "https://petstore3.swagger.io/api/v3/user/user1" \
 -H "accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer <YOUR_OAUTH_TOKEN>" \
--d '{
+-d 
+{
   "id": 0,
   "username": "user1",
   "firstName": "string",
@@ -1018,30 +1027,30 @@ PUT "https://petstore3.swagger.io/api/v3/user/user1" \
   "password": "string",
   "phone": "string",
   "userStatus": 0
-}'
+}
 ```
 #### Responses
 | Code | Description |
 |------|-------------|
 | 200  | Successful operation |
-| 400  | Invalid user supplied |
+| 400  | Not valid user supplied |
 | 404  | User not found |
 | default | Unexpected error |
 
-(A successful update returns a `200` code with no response body.)
+A successful update returns a `200` code with no response body.
 
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                               | 
 |--------|--------|-------------------------------------------|
-| username | string | The username of the user that needs to be updated |
+| username | string | The username of the user to update |
 
-##### Request Body
+##### Request body
 | Name | Type | Description |
 |------|------|-------------|
-| body | User object | **(Required)** The `User` object with updated information. |
+| body | User object | Required The `User` object with updated information. |
 
-### Deleting a User
+### Deleting a user
 Deletes a user.
 
 Endpoint: https://petstore3.swagger.io/api/v3/user/{username}
@@ -1065,22 +1074,22 @@ DELETE "https://petstore3.swagger.io/api/v3/user/user1" \
 | Code | Description |
 |------|-------------|
 | 200  | User deleted |
-| 400  | Invalid username supplied |
+| 400  | Not valid username supplied |
 | 404  | User not found |
 
-(A successful deletion returns a `200` code with no response body.)
+A successful deletion returns a `200` code with no response body.
 
 #### Parameters
-##### Path Parameters
+##### Path parameters
 | Name   | Type   | Description                                                                                             |
 |--------|--------|---------------------------------------------------------------------------------------------------------|
-| username   | string  | The username of the user that needs to be deleted |
+| username   | string  | The username of the user to delete |
 
-# Author's Note
-This document is meant to provide an in-depth guide for the Petstore API as I would write it if I were a company's technical writer/documentation specialist. In true "docs-as-code" fashion, I'm going to treat this document as living code, continuously improving it based on feedback and changing requirements.
+# Author's note
+This document provides an in-depth guide for the Petstore API as a company's technical writer/documentation specialist would write it. In true "docs-as-code" fashion, this document is living code, continuously improving it based on feedback and changing requirements.
 
 It includes detailed information about the API endpoints, examples of how to make calls to the API, the parameters required for each endpoint, and the expected responses. This should serve as a comprehensive resource for developers working with the Petstore API.
 
-This sample API was created using Swagger, a powerful open-source framework for API development. It's not intended for production use but rather as a demonstration of how I'd document an API. You can find out more about Swagger at [https://swagger.io](https://swagger.io) or on [irc.freenode.net, #swagger](irc://irc.freenode.net/swagger). 
+Swagger created this sample API, a powerful open source framework for API development. It's not intended for production use but rather as a demonstration of how to document an API. You can find out more about Swagger at [https://swagger.io](https://swagger.io) or on [irc.freenode.net, #swagger](irc://irc.freenode.net/swagger). 
 
-And of course, the mandatory dog tax: here's [Ace](20210327_200932.jpg).
+And the mandatory dog tax: here's [Ace](20210327_200932.jpg).
